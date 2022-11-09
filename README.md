@@ -8,28 +8,29 @@ This is our implementation for the paper:
 
 
 
-## Usage		
+## Usage
 
-1. Install [Anaconda](https://docs.conda.io/en/latest/miniconda.html) with Python >= 3.5
+1. Install [Anaconda](https://docs.conda.io/en/latest/miniconda.html) with Python >= 3.7
+
+```
+wget wget https://repo.anaconda.com/miniconda/Miniconda3-py37_4.12.0-Linux-x86_64.sh
+chmod +x Miniconda3-py37_4.12.0-Linux-x86_64.sh
+./Miniconda3-py37_4.12.0-Linux-x86_64.sh
+```
+
 2. Clone the repository and install requirements
 
 ```bash
-git clone https://github.com/THUwangcy/HawkesKT
+git clone https://github.com/wwells/HawkesKT
+cd HawkesKT && conda install --file requirements.txt
 ```
 
-3. Prepare datasets according to [README](https://github.com/THUwangcy/HawkesKT/tree/main/data/README.md) in data directory
-4. Install requirements and step into the `src` folder
+3. Download datasets according to [README](https://github.com/THUwangcy/HawkesKT/tree/main/data/README.md) in data directory
+
+4. Run model while regenerating the corpus
 
 ```bash
-cd HawkesKT
-pip install -r requirements.txt
-cd src
-```
-
-5. Run model
-
-```bash
-python main.py --model_name HawkesKT --emb_size 64 --max_step 50 --lr 5e-3 --l2 1e-5 --time_log 5 --gpu 1 --dataset ASSISTments_09-10
+python main.py --model_name HawkesKT --emb_size 64 --max_step 50 --lr 5e-3 --l2 1e-5 --time_log 5 --gpu 1 --dataset ASSISTments_09-10 --regenerate 1
 ```
 
 
@@ -56,7 +57,7 @@ The main arguments of HawkesKT are listed below.
 
 ## Performance
 
-The table below lists the results of some representative models in `ASSISTments 12-13` dataset. 
+The table below lists the results of some representative models in `ASSISTments 12-13` dataset.
 
 | Model                                                        |  AUC   | Time/iter | Time-aware | Temporal cross |
 | :----------------------------------------------------------- | :----: | :-------: | :--------: | :------------: |

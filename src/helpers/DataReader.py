@@ -85,13 +85,13 @@ class DataReader(object):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(filename='../../log/test.txt', level=logging.INFO)
+    logging.basicConfig(filename='../log/test.txt', level=logging.INFO)
     logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
     parser = argparse.ArgumentParser(description='')
     parser = DataReader.parse_data_args(parser)
 
     args, extras = parser.parse_known_args()
-    args.path = '../../data/'
+    args.path = '../data/'
     np.random.seed(2019)
     data = DataReader(args)
     data.gen_fold_data(k=0)
@@ -99,4 +99,5 @@ if __name__ == '__main__':
 
     corpus_path = os.path.join(args.path, args.dataset, 'Corpus_{}.pkl'.format(args.max_step))
     logging.info('Save corpus to {}'.format(corpus_path))
-    pickle.dump(data, open(corpus_path, 'wb'))
+    with open(corpus_path, 'wb') as f:
+        pickle.dump(data, f)
